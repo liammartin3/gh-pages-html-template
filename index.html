@@ -1,191 +1,67 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<!-- reference to Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="">
 
-    <script>
-        L_NO_TOUCH = false;
-        L_DISABLE_3D = false;
-    </script>
+<!-- reference to Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-    <style>
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <style>
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-
-    <meta name="viewport" content="width=device-width,
-                        initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <style>
-        #map_af1ade91335842e99ca3120152b8be50 {
-            position: relative;
-            width: 100.0%;
-            height: 100.0%;
-            left: 0.0%;
-            top: 0.0%;
-        }
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css"/>
-    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
-    <script src="https://raw.githack.com/digidem/leaflet-side-by-side/gh-pages/leaflet-side-by-side.js"></script>
 </head>
+
 <body>
 
-    <div class="folium-map" id="map_af1ade91335842e99ca3120152b8be50"></div>
-
-</body>
-<script>
-
-    var map_af1ade91335842e99ca3120152b8be50 = L.map("map_af1ade91335842e99ca3120152b8be50", {
-        center: [
-            20.0, 0.0
-        ],
-        crs: L.CRS.EPSG3857,
-        zoom: 2,
-        zoomControl: true,
-        preferCanvas: false,
-        drawExport: false,
-        layersControl: true
-    });
-    L.control.scale().addTo(map_af1ade91335842e99ca3120152b8be50);
+  <div id="map" style = "width: 1000px; height: 580px"></div> 
+  <script>
 
 
-    var tile_layer_771c761aae3e44eca8b6c4d96f35b232 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        "attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.",
-        "detectRetina": false,
-        "maxNativeZoom": 24,
-        "maxZoom": 24,
-        "minZoom": 0,
-        "noWrap": false,
-        "opacity": 1,
-        "subdomains": "abc",
-        "tms": false
-    }).addTo(map_af1ade91335842e99ca3120152b8be50);
+    const education = L.layerGroup();
+
+    const work = L.layerGroup();
 
 
-    L.control.fullscreen({"forceSeparateButton": false, "position": "topleft", "title": "Full Screen", "titleCancel": "Exit Full Screen"}).addTo(map_af1ade91335842e99ca3120152b8be50);
+const kansascity = L.marker([39.100996863354055, -94.57957546320323]).bindPopup('2023 - Present: Currently working as a GIS Data Analyst for Xentity').addTo(work);
 
+    const denver = L.marker([39.78959911075947, -105.03152251289724]).bindPopup('<h1> 2012 - 2016: </h1> <p>Received Bachelors of Arts in Environmental Studies from Regis University </p> <img src="regis.jpg" width = "300" height = "200" />' ).addTo(education);
 
-    var options = {
-        position: "topleft",
-        draw: {},
-        edit: {}
-    }
-    // FeatureGroup is to store editable layers.
-    var drawnItems = new L.featureGroup().addTo(map_af1ade91335842e99ca3120152b8be50);
-    options.edit.featureGroup = drawnItems;
-    var draw_control_89687cbc059143e7a7e9e498151a7fd1 = new L.Control.Draw(options).addTo(map_af1ade91335842e99ca3120152b8be50);
-    map_af1ade91335842e99ca3120152b8be50.on(L.Draw.Event.CREATED, function (e) {
-        var layer = e.layer,
-            type = e.layerType;
-        var coords = JSON.stringify(layer.toGeoJSON());
-        layer.on('click', function () {
-            alert(coords);
-            console.log(coords);
+    const broomfield = L.marker([39.912807108365655, -105.07267397165714]).bindPopup('2019 - 2020: GIS Tech for Tasman Geosciences').addTo(work);
+
+    const mpls = L.marker([44.97190134891426, -93.24332992523516]).bindPopup('<h1>2016 - 2018: </h1> <p>Received Masters of Arts in Geography from University of Minnesota</p> <img src="umn.jpeg" width = "300" height = "200" />').addTo(education);
+
+    const slc = L.marker([40.766759067938466, -111.88710836495122]).bindPopup('2020 - 2022: GIS Analyst for Red Castle Resources in SLC').addTo(work);
+
+    const mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+    const mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+ 
+    var osm = L.tileLayer('https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png?key=HmFw65ohtlrYxPUniiUD', {
+            maxZoom: 19,
+            attribution: '© maptiler © OpenStreetMap' 
+           }); 
+
+    const CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
         });
-        drawnItems.addLayer(layer);
+
+    const map = L.map('map', {
+        center: [39.73, -104.99],
+        zoom: 4,
+        layers: [osm, education]
     });
-    map_af1ade91335842e99ca3120152b8be50.on('draw:created', function (e) {
-        drawnItems.addLayer(e.layer);
-    });
 
-
-    var measure_control_147149cb42564feb9a769a2657f617f6 = new L.Control.Measure({
-        "position": "bottomleft",
-        "primaryAreaUnit": "sqmeters",
-        "primaryLengthUnit": "meters",
-        "secondaryAreaUnit": "acres",
-        "secondaryLengthUnit": "miles"
-    });
-    map_af1ade91335842e99ca3120152b8be50.addControl(measure_control_147149cb42564feb9a769a2657f617f6);
-
-
-    L.Control.geocoder({"collapsed": true, "defaultMarkGeocode": true, "position": "topleft"}).on('markgeocode', function (e) {
-        map_af1ade91335842e99ca3120152b8be50.setView(e.geocode.center, 11);
-    }).addTo(map_af1ade91335842e99ca3120152b8be50);
-
-
-    map_af1ade91335842e99ca3120152b8be50.fitBounds([
-        [
-            20, 0
-        ],
-        [
-            20, 0
-        ]
-    ], {"maxZoom": 2});
-
-
-    var tile_layer_19134bbd9cf0448099fcd12defc67263 = L.tileLayer("https://a.tile.opentopomap.org/{z}/{x}/{y}.png", {
-        "attribution": "Map data: (C) OpenStreetMap contributors, SRTM | Map style: (C) OpenTopoMap (CC-BY-SA)",
-        "detectRetina": false,
-        "maxNativeZoom": 17,
-        "maxZoom": 17,
-        "minZoom": 0,
-        "noWrap": false,
-        "opacity": 1,
-        "subdomains": "abc",
-        "tms": false
-    }).addTo(map_af1ade91335842e99ca3120152b8be50);
-
-
-    var tile_layer_e4e7ba8db35c48938dd2c8783e827501 = L.tileLayer("https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}", {
-        "attribution": "Google",
-        "detectRetina": false,
-        "maxNativeZoom": 22,
-        "maxZoom": 22,
-        "minZoom": 0,
-        "noWrap": false,
-        "opacity": 1,
-        "subdomains": "abc",
-        "tms": false
-    }).addTo(map_af1ade91335842e99ca3120152b8be50);
-
-
-    var split_control_5cd2a7fb3cd240a6b26f0c9f6f2d3cd6 = L.control.sideBySide(tile_layer_19134bbd9cf0448099fcd12defc67263, tile_layer_e4e7ba8db35c48938dd2c8783e827501).addTo(map_af1ade91335842e99ca3120152b8be50);
-
-
-    var layer_control_4b43a9a0efec4f71985e8ab4614a5424 = {
-        base_layers: {
-            "openstreetmap": tile_layer_771c761aae3e44eca8b6c4d96f35b232
-        },
-        overlays: {
-            "OpenTopoMap": tile_layer_19134bbd9cf0448099fcd12defc67263,
-            "Google Satellite": tile_layer_e4e7ba8db35c48938dd2c8783e827501,
-            "Split Control": split_control_5cd2a7fb3cd240a6b26f0c9f6f2d3cd6
-        }
+    const baseLayers = {
+        'OpenStreetMap': osm,
+        'Dark': CartoDB_DarkMatter
     };
-    L.control.layers(layer_control_4b43a9a0efec4f71985e8ab4614a5424.base_layers, layer_control_4b43a9a0efec4f71985e8ab4614a5424.overlays, {
-        "autoZIndex": true,
-        "collapsed": true,
-        "position": "topright"
-    }).addTo(map_af1ade91335842e99ca3120152b8be50);
+
+    const overlays = {
+        'Education': education,
+        'Work': work
+    };
+
+    const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
 </script>
+</body>
+</html>
+
